@@ -12,21 +12,14 @@ import javax.persistence.*;
 @Builder
 @ToString
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "role")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     @JsonProperty("ID")
     public int ID;
 
-    @Column(name = "UserName")
-    public String username;
-
-    @Column(name = "Password")
-    public String password;
-
-    @Column(name = "email")
-    public String email;
-
+    @Column(name = "RoleName")
+    public String roleName;
 }

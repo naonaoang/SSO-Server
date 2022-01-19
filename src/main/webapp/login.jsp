@@ -35,6 +35,10 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Enter password"/>
             </div>
+            <div class="form-group">
+                <label for="asHR">Sign in as HR</label>
+                <input type="checkbox" name="asHR" id="asHR" class="form-control" value="true"/>
+            </div>
             <button type="submit" class="btn btn-outline-primary">Login</button>
         </form>
         <h3 class="my-3" style="color: red;">${credentialError}</h3>
