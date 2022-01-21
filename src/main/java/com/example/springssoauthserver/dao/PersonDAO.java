@@ -33,4 +33,11 @@ public class PersonDAO {
         Person person = (Person) query.getSingleResult();
         return person;
     }
+
+    public int createPerson(Person person){
+        Session session = getCurrentSession();
+        Serializable id = session.save(person);
+        System.out.println(id);
+        return (int)id;
+    }
 }

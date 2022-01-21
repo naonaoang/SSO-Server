@@ -23,12 +23,12 @@ public class LoginController {
     @Autowired
     ProfileService profileService;
 
-    @GetMapping("/login")
+    @GetMapping("/auth/login")
     public String login() {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public String login(@RequestParam(value = "redirect", required = false) String redirect, HttpServletResponse res,
                         @RequestParam String username,@RequestParam String password,@RequestParam(name = "asHR", required = false) String asHR,
                         Model model) {
