@@ -5,6 +5,7 @@ import com.example.springssoauthserver.domain.User;
 import com.example.springssoauthserver.domain.UserRole;
 import com.example.springssoauthserver.security.CookieUtil;
 import com.example.springssoauthserver.security.JwtUtil;
+import com.example.springssoauthserver.service.ProfileService;
 import com.example.springssoauthserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Locale;
 
 @Controller
 public class LoginController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    ProfileService profileService;
 
     @GetMapping("/login")
     public String login() {
@@ -47,18 +51,19 @@ public class LoginController {
                 }
             }
         }
+        int id = profileService.findEmployeebyUserID(user.getID()).getID();
         String jwt = JwtUtil.generateToken(username, JwtConstant.JWT_VALID_DURATION,role,userRole.getID());
         //Setting maxAge to -1 will preserve it until the browser is closed.
         CookieUtil.create(res, JwtConstant.JWT_COOKIE_NAME, jwt, false, -1, "localhost");
         System.out.println(role);
         if(redirect == null || redirect.equals("")){
-            redirect = "http://localhost:8080/hr/employee-profile";
-//            if(role.equals("HR")){
-//                redirect = "HR homepage";
-//            }
-//            else{
-//                redirect = "Employee homepage";
-//            }
+//            redirect = "http://localhost:8080/hr/employee-profile";
+            if(role.toLowerCase().equals("hr")){
+                redirect = "http://localhost:4200/hr/"+id;
+            }
+            else{
+                redirect = "http://localhost:4200/user/"+id;
+            }
         }
 
         return "redirect:" + redirect;
