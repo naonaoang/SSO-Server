@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @ToString
 @Entity
-@Table(name = "registrationToken")
+@Table(name = "RegistrationToken")
 public class RegistrationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

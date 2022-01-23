@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @ToString
 @Entity
-@Table(name = "userrole")
+@Table(name = "UserRole")
 public class UserRoleDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
