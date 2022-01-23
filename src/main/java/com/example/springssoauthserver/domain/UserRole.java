@@ -32,6 +32,9 @@ public class UserRole {
     @Column(name = "createDate")
     public String createDate;
 
+    @Column(name = "status")
+    public String status;
+
     @OneToOne
     @JoinColumn(name = "UserID")
     public User user;
