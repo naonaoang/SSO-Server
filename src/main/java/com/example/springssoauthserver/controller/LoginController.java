@@ -39,7 +39,7 @@ public class LoginController {
         }
         String role = "Employee";
         UserRole userRole = userService.findUserRoleByID(user.getID());
-        if(userRole.getStatus().equals("Pending") || userRole.getStatus().equals("Rejected")){
+        if(!userRole.getStatus().equals("Completed")){
             model.addAttribute("credentialError", "Invalid username or password");
             return "login";
         }
