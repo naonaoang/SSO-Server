@@ -55,7 +55,7 @@ public class LoginController {
                 }
             }
         }
-        int id = profileService.findEmployeebyUserID(user.getID()).getID();
+        int id = profileService.findPersonByUserID(user.getID()).getID();
         String jwt = JwtUtil.generateToken(username, JwtConstant.JWT_VALID_DURATION,role,userRole.getID());
         //Setting maxAge to -1 will preserve it until the browser is closed.
         CookieUtil.create(res, JwtConstant.JWT_COOKIE_NAME, jwt, false, -1, "localhost");
